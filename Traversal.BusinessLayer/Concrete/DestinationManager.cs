@@ -30,7 +30,7 @@ namespace Traversal.BusinessLayer.Concrete
 
         public Destination TGetByID(int id)
         {
-            throw new NotImplementedException();
+            return _destinationDAL.GetByID(id);
         }
 
         public List<Destination> TGetList()
