@@ -20,7 +20,7 @@ namespace Traversal.BusinessLayer.Concrete
 
         public void TAdd(Comment entity)
         {
-            throw new NotImplementedException();
+            _commentDAL.Insert(entity);
         }
 
         public void TDelete(Comment entity)

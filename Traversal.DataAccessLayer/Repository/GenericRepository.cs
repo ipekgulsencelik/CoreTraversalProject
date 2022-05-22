@@ -40,6 +40,7 @@ namespace Traversal.DataAccessLayer.Repository
         {
             using var c = new Context();
             c.Add(entity);
+            c.SaveChanges();
         }
 
         public void Update(T entity)
