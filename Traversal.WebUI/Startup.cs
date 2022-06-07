@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Traversal.DataAccessLayer.Concrete;
 using Traversal.EntityLayer.Concrete;
+using Traversal.WebUI.Models;
 
 namespace Traversal.WebUI
 {
@@ -28,7 +29,7 @@ namespace Traversal.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<Context>();
-            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
+            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
 
             services.AddControllersWithViews();
 
