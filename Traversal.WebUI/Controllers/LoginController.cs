@@ -74,7 +74,7 @@ namespace Traversal.WebUI.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Destnation");
+                    return RedirectToAction("Index", "Profile", new { area = "Member" });
                 }
                 else
                 {
