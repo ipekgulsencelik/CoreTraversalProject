@@ -27,5 +27,6 @@ namespace Traversal.DataAccessLayer.Concrete
         public DbSet<SubFeature> SubFeatures { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
     }
 }
