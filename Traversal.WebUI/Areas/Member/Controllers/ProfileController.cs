@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Traversal.EntityLayer.Concrete;
@@ -32,6 +33,35 @@ namespace Traversal.WebUI.Areas.Member.Controllers
             userEditViewModel.Mail = values.Email;
 
             return View(userEditViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(UserEditViewModel userEditModel)
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            if (userEditModel.Image != null)
+            {
+                var resource = Directory.GetCurrentDirectory();
+                var extension = Path.GetExtension(userEditModel.Image.FileName);
+                var imageName = Guid.NewGuid() + extension;
+                var saveLocation = resource + "/wwwroot/UserImages/" + imageName;
+                var stream = new FileStream(saveLocation, FileMode.Create);
+                await userEditModel.Image.CopyToAsync(stream);
+                user.ImageUrl = imageName;
+            }
+
+            user.Name = userEditModel.Name;
+            user.Surname = userEditModel.Surname;
+            user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, userEditModel.Password);
+
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+            
+            return View();
         }
     }
 }
