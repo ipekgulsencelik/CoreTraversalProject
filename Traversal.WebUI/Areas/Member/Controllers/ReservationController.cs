@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -18,6 +19,13 @@ namespace Traversal.WebUI.Areas.Member.Controllers
         DestinationManager destinationManger = new DestinationManager(new EFDestinationDAL());
         ReservationManager reservationManager = new ReservationManager(new EFReservationDAL());
 
+        private readonly UserManager<AppUser> _userManager;
+
+        public ReservationController(UserManager<AppUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
         public IActionResult MyCurrentReservation()
         {
             return View();
@@ -26,6 +34,17 @@ namespace Traversal.WebUI.Areas.Member.Controllers
         public IActionResult MyOldReservation()
         {
             return View();
+        }
+
+        public async Task<IActionResult> MyApprovalReservation()
+        {
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            ViewBag.valuesID = values.Id;
+
+            var valuesList = reservationManager.GetListApprovalReservations(values.Id);
+
+            return View(valuesList);
         }
 
         [HttpGet]

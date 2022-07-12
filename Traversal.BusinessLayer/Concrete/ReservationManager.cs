@@ -18,6 +18,11 @@ namespace Traversal.BusinessLayer.Concrete
             _reservationDAL = reservationDAL;
         }
 
+        public List<Reservation> GetListApprovalReservations(int id)
+        {
+            return _reservationDAL.GetListByFilter(x => x.AppUserID == id);
+        }
+
         public void TAdd(Reservation entity)
         {
             _reservationDAL.Insert(entity);
