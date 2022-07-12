@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using Traversal.EntityLayer.Concrete;
 namespace Traversal.WebUI.Areas.Member.Controllers
 {
     [Area("Member")]
+    [AllowAnonymous]
     public class ReservationController : Controller
     {
         DestinationManager destinationManger = new DestinationManager(new EFDestinationDAL());
@@ -44,7 +46,9 @@ namespace Traversal.WebUI.Areas.Member.Controllers
         [HttpPost]
         public IActionResult NewReservation(Reservation reservation)
         {
-            reservation.AppUserID = 1002;
+            reservation.AppUserID = 1003;
+
+            reservation.Status = "Onay Bekliyor";
 
             reservationManager.TAdd(reservation);
 
