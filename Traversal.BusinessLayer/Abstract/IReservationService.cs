@@ -10,5 +10,9 @@ namespace Traversal.BusinessLayer.Abstract
     public interface IReservationService : IGenericService<Reservation>
     {
         List<Reservation> GetListApprovalReservations(int id);
+
+        //List<Reservation> GetListOldReservations(int id);
+        //List<Reservation> GetListCurrentReservations(int id);
+        //List<Reservation> GetListNewReservations(int id);
     }
 }

@@ -40,7 +40,7 @@ namespace Traversal.WebUI.Areas.Member.Controllers
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            ViewBag.valuesID = values.Id;
+            //ViewBag.valuesID = values.Id;
 
             var valuesList = reservationManager.GetListApprovalReservations(values.Id);
 

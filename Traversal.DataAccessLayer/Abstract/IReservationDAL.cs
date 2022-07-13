@@ -9,5 +9,8 @@ namespace Traversal.DataAccessLayer.Abstract
 {
     public interface IReservationDAL : IGenericDAL<Reservation>
     {
+        List<Reservation> GetListWithReservationsByPendingApproval(int id);
+        List<Reservation> GetListWithReservationsByAccepted(int id);
+        List<Reservation> GetListWithReservationsByPassing(int id);
     }
 }
