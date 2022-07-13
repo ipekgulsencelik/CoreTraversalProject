@@ -18,9 +18,19 @@ namespace Traversal.BusinessLayer.Concrete
             _reservationDAL = reservationDAL;
         }
 
-        public List<Reservation> GetListApprovalReservations(int id)
+        public List<Reservation> GetListWithReservationsByAccepted(int id)
         {
-            return _reservationDAL.GetListByFilter(x => x.AppUserID == id && x.Status == "Onay Bekliyor");
+            return _reservationDAL.GetListWithReservationsByAccepted(id);
+        }
+
+        public List<Reservation> GetListWithReservationsByPassing(int id)
+        {
+            return _reservationDAL.GetListWithReservationsByPassing(id);
+        }
+
+        public List<Reservation> GetListWithReservationsByPendingApproval(int id)
+        {
+            return _reservationDAL.GetListWithReservationsByPendingApproval(id);
         }
 
         public void TAdd(Reservation entity)

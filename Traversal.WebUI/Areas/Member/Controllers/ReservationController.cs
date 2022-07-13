@@ -26,14 +26,22 @@ namespace Traversal.WebUI.Areas.Member.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult MyCurrentReservation()
+        public async Task<IActionResult> MyCurrentReservation()
         {
-            return View();
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            var valuesList = reservationManager.GetListWithReservationsByAccepted(values.Id);
+
+            return View(valuesList);
         }
 
-        public IActionResult MyOldReservation()
+        public async Task<IActionResult> MyOldReservation()
         {
-            return View();
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            var valuesList = reservationManager.GetListWithReservationsByPassing(values.Id);
+
+            return View(valuesList);
         }
 
         public async Task<IActionResult> MyApprovalReservation()
@@ -42,7 +50,7 @@ namespace Traversal.WebUI.Areas.Member.Controllers
 
             //ViewBag.valuesID = values.Id;
 
-            var valuesList = reservationManager.GetListApprovalReservations(values.Id);
+            var valuesList = reservationManager.GetListWithReservationsByPendingApproval(values.Id);
 
             return View(valuesList);
         }
