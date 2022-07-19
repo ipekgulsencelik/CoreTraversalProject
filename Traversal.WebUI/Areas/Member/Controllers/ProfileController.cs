@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Traversal.WebUI.Areas.Member.Controllers
 {
     [Area("Member")]
     [Route("Member/[controller]/[action]")]
+    [AllowAnonymous]
     public class ProfileController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
