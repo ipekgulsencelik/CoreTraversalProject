@@ -20,12 +20,12 @@ namespace Traversal.BusinessLayer.Concrete
 
         public void TAdd(Destination entity)
         {
-            throw new NotImplementedException();
+            _destinationDAL.Insert(entity);
         }
 
         public void TDelete(Destination entity)
         {
-            throw new NotImplementedException();
+            _destinationDAL.Delete(entity);
         }
 
         public Destination TGetByID(int id)
@@ -40,7 +40,7 @@ namespace Traversal.BusinessLayer.Concrete
 
         public void TUpdate(Destination entity)
         {
-            throw new NotImplementedException();
+            _destinationDAL.Update(entity);
         }
     }
 }
