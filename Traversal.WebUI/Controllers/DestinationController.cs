@@ -20,7 +20,7 @@ namespace Traversal.WebUI.Controllers
             return View(values);
         }
 
-        [HttpGet]
+        //[HttpGet]
         public IActionResult DestinationDetails(int id)
         {
             ViewBag.destination = id;
@@ -30,10 +30,10 @@ namespace Traversal.WebUI.Controllers
             return View(values);
         }
 
-        [HttpPost]
-        public IActionResult DestinationDetails(Destination destination)
-        {
-            return View();
-        }
+        //[HttpPost]
+        //public IActionResult DestinationDetails(Destination destination)
+        //{
+        //    return View();
+        //}
     }
 }

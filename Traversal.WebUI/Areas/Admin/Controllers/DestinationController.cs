@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Traversal.BusinessLayer.Abstract;
 using Traversal.BusinessLayer.Concrete;
 using Traversal.DataAccessLayer.EntityFramework;
 using Traversal.EntityLayer.Concrete;
@@ -14,11 +15,18 @@ namespace Traversal.WebUI.Areas.Admin.Controllers
     [AllowAnonymous]
     public class DestinationController : Controller
     {
-        DestinationManager destinationManger = new DestinationManager(new EFDestinationDAL());
+        //DestinationManager destinationManger = new DestinationManager(new EFDestinationDAL());
+
+        private readonly IDestinationService _destinationService;
+
+        public DestinationController(IDestinationService destinationService)
+        {
+            _destinationService = destinationService;
+        }
 
         public IActionResult Index()
         {
-            var values = destinationManger.TGetList();
+            var values = _destinationService.TGetList();
 
             return View(values);
         }
@@ -32,15 +40,15 @@ namespace Traversal.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddDestination(Destination destination)
         {
-            destinationManger.TAdd(destination);
+            _destinationService.TAdd(destination);
 
             return RedirectToAction("Index");
         }
 
         public IActionResult DeleteDestination(int id)
         {
-            var values = destinationManger.TGetByID(id);
-            destinationManger.TDelete(values);
+            var values = _destinationService.TGetByID(id);
+            _destinationService.TDelete(values);
 
             return RedirectToAction("Index");
         }
@@ -48,7 +56,7 @@ namespace Traversal.WebUI.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult UpdateDestination(int id)
         {
-            var values = destinationManger.TGetByID(id);
+            var values = _destinationService.TGetByID(id);
 
             return View(values);
         }
@@ -56,7 +64,7 @@ namespace Traversal.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult UpdateDestination(Destination destination)
         {
-            destinationManger.TUpdate(destination);
+            _destinationService.TUpdate(destination);
 
             return RedirectToAction("Index");
         }

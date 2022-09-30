@@ -37,6 +37,10 @@ namespace Traversal.WebUI
 
             services.AddScoped<ICommentService, CommentManager>();
             services.AddScoped<ICommentDAL, EFCommentDAL>();
+            services.AddScoped<IDestinationService, DestinationManager>();
+            services.AddScoped<IDestinationDAL, EFDestinationDAL>();
+            services.AddScoped<IAppUserService, AppUserManager>();
+            services.AddScoped<IAppUserDAL, EFAppUserDAL>();
 
             services.AddControllersWithViews();
 
