@@ -25,17 +25,17 @@ namespace Traversal.BusinessLayer.Concrete
 
         public void TDelete(Comment entity)
         {
-            throw new NotImplementedException();
+            _commentDAL.Delete(entity);
         }
 
         public Comment TGetByID(int id)
         {
-            throw new NotImplementedException();
+            return _commentDAL.GetByID(id);
         }
 
         public List<Comment> TGetList()
         {
-            throw new NotImplementedException();
+            return _commentDAL.GetList();
         }
 
         public List<Comment> TGetDestinationByID(int id)
@@ -46,6 +46,11 @@ namespace Traversal.BusinessLayer.Concrete
         public void TUpdate(Comment entity)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Comment> TGetListCommentWithDestination()
+        {
+            return _commentDAL.GetListCommentWithDestination();
         }
     }
 }

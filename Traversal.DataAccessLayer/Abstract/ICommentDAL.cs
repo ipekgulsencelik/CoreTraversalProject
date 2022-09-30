@@ -9,5 +9,6 @@ namespace Traversal.DataAccessLayer.Abstract
 {
     public interface ICommentDAL : IGenericDAL<Comment>
     {
+        public List<Comment> GetListCommentWithDestination();
     }
 }

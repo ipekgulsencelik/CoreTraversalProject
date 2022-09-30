@@ -10,7 +10,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Traversal.BusinessLayer.Abstract;
+using Traversal.BusinessLayer.Concrete;
+using Traversal.DataAccessLayer.Abstract;
 using Traversal.DataAccessLayer.Concrete;
+using Traversal.DataAccessLayer.EntityFramework;
 using Traversal.EntityLayer.Concrete;
 using Traversal.WebUI.Models;
 
@@ -30,6 +34,9 @@ namespace Traversal.WebUI
         {
             services.AddDbContext<Context>();
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
+
+            services.AddScoped<ICommentService, CommentManager>();
+            services.AddScoped<ICommentDAL, EFCommentDAL>();
 
             services.AddControllersWithViews();
 
