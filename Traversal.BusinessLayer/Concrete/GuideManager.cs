@@ -23,6 +23,16 @@ namespace Traversal.BusinessLayer.Concrete
             throw new NotImplementedException();
         }
 
+        public void TChangeToFalseByGuide(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TChangeToTrueByGuide(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void TDelete(Guide entity)
         {
             throw new NotImplementedException();

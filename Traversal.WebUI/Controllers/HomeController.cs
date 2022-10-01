@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using Traversal.WebUI.Models;
 
 namespace Traversal.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,11 +22,24 @@ namespace Traversal.WebUI.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Index sayfası çağrıldı");
+            _logger.LogError("Error log çağrıldı");
+
             return View();
         }
 
         public IActionResult Privacy()
         {
+            DateTime date = Convert.ToDateTime(DateTime.Now.ToLongDateString());
+            _logger.LogInformation(date + " Privacy sayfası çağrıldı");
+
+            return View();
+        }
+
+        public IActionResult Test()
+        {
+            _logger.LogInformation("Test sayfası çağrıldı");
+
             return View();
         }
 
