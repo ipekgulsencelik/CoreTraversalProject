@@ -20,7 +20,7 @@ namespace Traversal.BusinessLayer.Concrete
 
         public void TAdd(Guide entity)
         {
-            throw new NotImplementedException();
+            _guideDAL.Insert(entity);
         }
 
         public void TChangeToFalseByGuide(int id)
@@ -35,12 +35,12 @@ namespace Traversal.BusinessLayer.Concrete
 
         public void TDelete(Guide entity)
         {
-            throw new NotImplementedException();
+            _guideDAL.Delete(entity);
         }
 
         public Guide TGetByID(int id)
         {
-            throw new NotImplementedException();
+            return _guideDAL.GetByID(id);
         }
 
         public List<Guide> TGetList()
@@ -50,7 +50,7 @@ namespace Traversal.BusinessLayer.Concrete
 
         public void TUpdate(Guide entity)
         {
-            throw new NotImplementedException();
+            _guideDAL.Update(entity);
         }
     }
 }
