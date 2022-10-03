@@ -25,12 +25,12 @@ namespace Traversal.BusinessLayer.Concrete
 
         public void TChangeToFalseByGuide(int id)
         {
-            throw new NotImplementedException();
+            _guideDAL.ChangeToFalseByGuide(id);
         }
 
         public void TChangeToTrueByGuide(int id)
         {
-            throw new NotImplementedException();
+            _guideDAL.ChangeToTrueByGuide(id);
         }
 
         public void TDelete(Guide entity)

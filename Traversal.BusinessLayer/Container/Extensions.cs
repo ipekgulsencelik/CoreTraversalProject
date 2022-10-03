@@ -30,8 +30,8 @@ namespace Traversal.BusinessLayer.Container
             services.AddScoped<IGuideService, GuideManager>();
             services.AddScoped<IGuideDAL, EFGuideDAL>();
 
-            //services.AddScoped<IExcelService, ExcelManager>();
-            //services.AddScoped<IPdfService, PdfManager>();
+            services.AddScoped<IExcelService, ExcelManager>();
+            services.AddScoped<IPdfService, PdfManager>();
         }
     }
 }
