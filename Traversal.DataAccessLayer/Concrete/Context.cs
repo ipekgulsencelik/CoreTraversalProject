@@ -19,6 +19,7 @@ namespace Traversal.DataAccessLayer.Concrete
         public DbSet<About> Abouts { get; set; }
         public DbSet<ChildAbout> ChildAbouts { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<ContactUs> ContactUs { get; set; }
         public DbSet<Destination> Destinations { get; set; }
         public DbSet<Feature> Features { get; set; }
         public DbSet<Guide> Guides { get; set; }
@@ -28,5 +29,6 @@ namespace Traversal.DataAccessLayer.Concrete
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
     }
 }

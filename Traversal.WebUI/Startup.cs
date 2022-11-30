@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,9 +17,11 @@ using System.Threading.Tasks;
 using Traversal.BusinessLayer.Abstract;
 using Traversal.BusinessLayer.Concrete;
 using Traversal.BusinessLayer.Container;
+using Traversal.BusinessLayer.ValidationRules;
 using Traversal.DataAccessLayer.Abstract;
 using Traversal.DataAccessLayer.Concrete;
 using Traversal.DataAccessLayer.EntityFramework;
+using Traversal.DTOLayer.DTOs.AnnouncementDTOs;
 using Traversal.EntityLayer.Concrete;
 using Traversal.WebUI.Models;
 
@@ -47,7 +51,11 @@ namespace Traversal.WebUI
 
             services.ContainerDependencies();
 
-            services.AddControllersWithViews();
+            services.AddAutoMapper(typeof(Startup));
+
+            services.CustomerValidator();
+
+            services.AddControllersWithViews().AddFluentValidation();
 
             services.AddMvc(config =>
             {
