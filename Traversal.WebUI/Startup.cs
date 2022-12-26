@@ -11,6 +11,7 @@ using System.IO;
 using Traversal.BusinessLayer.Container;
 using Traversal.DataAccessLayer.Concrete;
 using Traversal.EntityLayer.Concrete;
+using Traversal.WebUI.CQRS.Handlers.DestinationHandlers;
 using Traversal.WebUI.Models;
 
 namespace Traversal.WebUI
@@ -27,6 +28,12 @@ namespace Traversal.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<GetAllDestinationQueryHandler>();
+            services.AddScoped<GetDestinationByIDQueryHandler>();
+            services.AddScoped<CreateDestinationCommandHandler>();
+            services.AddScoped<RemoveDestinationCommandHandler>();
+            services.AddScoped<UpdateDestinationCommandHandler>();
+
             services.AddLogging(x =>
             {
                 x.ClearProviders();
