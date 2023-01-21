@@ -1,15 +1,13 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Traversal.BusinessLayer.Abstract;
+using Traversal.BusinessLayer.Abstract.UnitOfWork;
 using Traversal.BusinessLayer.Concrete;
+using Traversal.BusinessLayer.Concrete.UnitOfWork;
 using Traversal.BusinessLayer.ValidationRules;
 using Traversal.DataAccessLayer.Abstract;
 using Traversal.DataAccessLayer.EntityFramework;
+using Traversal.DataAccessLayer.UnitOfWork;
 using Traversal.DTOLayer.DTOs.AnnouncementDTOs;
 
 namespace Traversal.BusinessLayer.Container
@@ -41,6 +39,11 @@ namespace Traversal.BusinessLayer.Container
 
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
             services.AddScoped<IAnnouncementDAL, EFAnnouncementDAL>();
+
+            services.AddScoped<IAccountService, AccountManager>();
+            services.AddScoped<IAccountDAL, EFAccountDAL>();
+
+            services.AddScoped<IUnitOfWorkDAL, UnitOfWorkDAL>();
         }
 
         public static void CustomerValidator(this IServiceCollection services)
