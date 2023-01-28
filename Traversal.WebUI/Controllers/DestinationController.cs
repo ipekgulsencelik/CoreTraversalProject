@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Traversal.BusinessLayer.Concrete;
 using Traversal.DataAccessLayer.EntityFramework;
-using Traversal.EntityLayer.Concrete;
 
 namespace Traversal.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class DestinationController : Controller
     {
         DestinationManager destinationManger = new DestinationManager(new EFDestinationDAL());
