@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Traversal.BusinessLayer.Abstract;
 using Traversal.DataAccessLayer.Abstract;
 using Traversal.EntityLayer.Concrete;
@@ -31,6 +27,11 @@ namespace Traversal.BusinessLayer.Concrete
         public Destination TGetByID(int id)
         {
             return _destinationDAL.GetByID(id);
+        }
+
+        public Destination TGetDestinationWithGuide(int id)
+        {
+            return _destinationDAL.GetDestinationWithGuide(id);
         }
 
         public List<Destination> TGetList()

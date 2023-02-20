@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Traversal.EntityLayer.Concrete;
 
 namespace Traversal.BusinessLayer.Abstract
@@ -11,5 +7,6 @@ namespace Traversal.BusinessLayer.Abstract
     {
         List<Comment> TGetDestinationByID(int id);
         List<Comment> TGetListCommentWithDestination();
+        public List<Comment> TGetListCommentWithDestinationAndUser(int id);
     }
 }

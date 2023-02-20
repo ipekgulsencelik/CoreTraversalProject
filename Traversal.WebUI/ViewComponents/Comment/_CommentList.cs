@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Traversal.BusinessLayer.Concrete;
+using Traversal.DataAccessLayer.Concrete;
 using Traversal.DataAccessLayer.EntityFramework;
 
 namespace Traversal.WebUI.ViewComponents.Comment
@@ -12,10 +10,14 @@ namespace Traversal.WebUI.ViewComponents.Comment
     {
         CommentManager commentManager = new CommentManager(new EFCommentDAL());
 
+        Context context = new Context();
+        
         public IViewComponentResult Invoke(int id)
         {
-            var values = commentManager.TGetDestinationByID(id);
+            ViewBag.commentCount = context.Comments.Where(x => x.DestinationID == id).Count();
 
+            var values = commentManager.TGetListCommentWithDestinationAndUser(id);
+            
             return View(values);
         }
     }

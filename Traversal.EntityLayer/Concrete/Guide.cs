@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Traversal.EntityLayer.Concrete
 {
@@ -15,7 +11,10 @@ namespace Traversal.EntityLayer.Concrete
         public string Description { get; set; }
         public string Image { get; set; }
         public string TwitterUrl { get; set; }
+        public string SubDescription { get; set; }
         public string InstagramUrl { get; set; }
         public bool Status { get; set; }
+
+        public List<Destination> Destinations { get; set; }
     }
 }

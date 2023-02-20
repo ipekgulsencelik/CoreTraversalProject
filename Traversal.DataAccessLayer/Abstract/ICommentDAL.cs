@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Traversal.EntityLayer.Concrete;
 
 namespace Traversal.DataAccessLayer.Abstract
@@ -10,5 +6,6 @@ namespace Traversal.DataAccessLayer.Abstract
     public interface ICommentDAL : IGenericDAL<Comment>
     {
         public List<Comment> GetListCommentWithDestination();
+        public List<Comment> GetListCommentWithDestinationAndUser(int id);
     }
 }
