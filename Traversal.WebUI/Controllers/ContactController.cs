@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
+using DTOLayer.DTOs.ContactDTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using Traversal.BusinessLayer.Abstract;
-using Traversal.DTOLayer.ContactDTOs;
 using Traversal.EntityLayer.Concrete;
 
 namespace Traversal.WebUI.Controllers

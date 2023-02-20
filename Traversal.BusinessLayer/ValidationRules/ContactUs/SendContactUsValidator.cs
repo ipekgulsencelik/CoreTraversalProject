@@ -1,5 +1,5 @@
-﻿using FluentValidation;
-using Traversal.DTOLayer.ContactDTOs;
+﻿using DTOLayer.DTOs.ContactDTOs;
+using FluentValidation;
 
 namespace Traversal.BusinessLayer.ValidationRules.ContactUs
 {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DTOLayer.DTOs.AppUserDTOs;
-using Traversal.DTOLayer.ContactDTOs;
+using DTOLayer.DTOs.ContactDTOs;
 using Traversal.DTOLayer.DTOs.AnnouncementDTOs;
 using Traversal.EntityLayer.Concrete;
 
