@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Traversal.SignalRApi.DAL;
+using Traversal.SignalRApi.Model;
 
 namespace Traversal.SignalRApi
 {
@@ -21,6 +22,9 @@ namespace Traversal.SignalRApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<VisitorService>();
+            services.AddSignalR();
+
             services.AddEntityFrameworkNpgsql().AddDbContext<Context>(opt =>
          opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
      
