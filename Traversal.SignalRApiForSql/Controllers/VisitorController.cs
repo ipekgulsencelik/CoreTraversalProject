@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
 using Traversal.SignalRApiForSql.DAL;
+using Traversal.SignalRApiForSql.Models;
 
 namespace Traversal.SignalRApiForSql.Controllers
 {
