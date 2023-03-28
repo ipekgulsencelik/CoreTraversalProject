@@ -59,5 +59,31 @@ namespace Traversal.WebUI.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        [Route("UpdateRole/{id}")]
+        public IActionResult UpdateRole(int id)
+        {
+            var value = _roleManager.Roles.FirstOrDefault(x => x.Id == id);
+
+            UpdateRoleViewModel updateRoleViewModel = new UpdateRoleViewModel
+            {
+                RoleID = value.Id,
+                RoleName = value.Name
+            };
+
+            return View(updateRoleViewModel);
+        }
+
+        [HttpPost]
+        [Route("UpdateRole/{id}")]
+        public async Task<IActionResult> UpdateRole(UpdateRoleViewModel updateRoleViewModel)
+        {
+            var value = _roleManager.Roles.FirstOrDefault(x => x.Id == updateRoleViewModel.RoleID);
+            value.Name = updateRoleViewModel.RoleName;
+            await _roleManager.UpdateAsync(value);
+
+            return RedirectToAction("Index");
+        }
     }
 }
