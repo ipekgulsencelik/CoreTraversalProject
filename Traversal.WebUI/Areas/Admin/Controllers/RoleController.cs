@@ -26,14 +26,14 @@ namespace Traversal.WebUI.Areas.Admin.Controllers
             var values = _roleManager.Roles.ToList();
             return View(values);
         }
-        
+
         [HttpGet]
         [Route("CreateRole")]
         public IActionResult CreateRole()
         {
             return View();
         }
-        
+
         [HttpPost]
         [Route("CreateRole")]
         public async Task<IActionResult> CreateRole(CreateRoleViewModel createRoleViewModel)
@@ -97,9 +97,11 @@ namespace Traversal.WebUI.Areas.Admin.Controllers
         }
 
         [Route("AssignRole/{id}")]
+        [HttpGet]
         public async Task<IActionResult> AssignRole(int id)
         {
             var user = _userManager.Users.FirstOrDefault(x => x.Id == id);
+            TempData["userID"] = user.Id;
             var roles = _roleManager.Roles.ToList();
             var userRoles = await _userManager.GetRolesAsync(user);
             List<RoleAssignViewModel> roleAssignViewModels = new List<RoleAssignViewModel>();
@@ -111,8 +113,29 @@ namespace Traversal.WebUI.Areas.Admin.Controllers
                 model.RoleExist = userRoles.Contains(item.Name);
                 roleAssignViewModels.Add(model);
             }
-         
+
             return View(roleAssignViewModels);
+        }
+
+        [HttpPost]
+        [Route("AssignRole/{id}")]
+        public async Task<IActionResult> AssignRole(List<RoleAssignViewModel> model)
+        {
+            var userID = (int)TempData["userID"];
+            var user = _userManager.Users.FirstOrDefault(x => x.Id == userID);
+            foreach (var item in model)
+            {
+                if (item.RoleExist)
+                {
+                    await _userManager.AddToRoleAsync(user, item.RoleName);
+                }
+                else
+                {
+                    await _userManager.RemoveFromRoleAsync(user, item.RoleName);
+                }
+            }
+
+            return RedirectToAction("UserList");
         }
     }
 }
