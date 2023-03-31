@@ -34,6 +34,11 @@ namespace Traversal.BusinessLayer.Concrete
             return _destinationDAL.GetDestinationWithGuide(id);
         }
 
+        public List<Destination> TGetLast4Destinations()
+        {
+            return _destinationDAL.GetLast4Destinations();
+        }
+
         public List<Destination> TGetList()
         {
             return _destinationDAL.GetList();
