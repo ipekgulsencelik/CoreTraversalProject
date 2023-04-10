@@ -1,25 +1,34 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Threading.Tasks;
 using Traversal.BusinessLayer.Concrete;
 using Traversal.DataAccessLayer.EntityFramework;
 
 namespace Traversal.WebUI.Areas.Member.Controllers
 {
     [Area("Member")]
-    [AllowAnonymous]
+    [Route("Member/[controller]/[action]")]
+
     public class DestinationController : Controller
     {
-        DestinationManager destinationManger = new DestinationManager(new EFDestinationDAL());
+        DestinationManager destinationManager = new DestinationManager(new EFDestinationDAL());
 
         public IActionResult Index()
         {
-            var values = destinationManger.TGetList();
+            var values = destinationManager.TGetList();
 
             return View(values);
+        }
+
+        public IActionResult GetCitiesSearchByName(string searchString)
+        {
+            ViewData["CurrentFilter"] = searchString;
+            var values = from x in destinationManager.TGetList() select x;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                values = values.Where(y => y.City.Contains(searchString));
+            }
+
+            return View(values.ToList());
         }
     }
 }
